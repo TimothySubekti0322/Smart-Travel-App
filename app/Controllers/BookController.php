@@ -249,4 +249,48 @@ class BookController extends BaseController
             'data' => $newBookData
         ]);
     }
+
+    public function getHighestBooked() {
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+
+        if($email !== 'admin@gmail.com' || $password !== 'admin') {
+            return $this->respond([
+                'status' => 401,
+                'message' => 'Unauthorized'
+            ]);
+        }
+        
+        $package = new Package();
+        $data = $package->getAllDestination();
+
+        $dataLength = count($data);
+
+        $books = new Book();
+        $bookData = $books->getOrderQuantityPerDestination($dataLength);
+
+        // Combine data and bookData into an associative array
+        $result = [];
+        foreach ($data as $index => $value) {
+            if (!array_key_exists($value, $result)) {
+                $result[$value] = 0;
+            }
+            $result[$value] += $bookData[$index];
+        }
+
+        // Separate merged data and bookData
+        $newData = array_keys($result);
+        $newBookData = array_values($result);
+
+        // Check the Highest Booked Package
+        $quantity = max($newBookData);
+        $city = $newData[array_search($quantity, $newBookData)];
+
+        return $this->respond([
+            'status' => 200,
+            'city' => $city,
+            'quantity' => $quantity
+        ]);
+    }
+
 }

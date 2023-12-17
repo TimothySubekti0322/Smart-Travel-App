@@ -11,7 +11,16 @@ var listPagination = [];
 ///////////////////////////////////////// Initial render /////////////////////////////////////////
 
 async function InitialRender() {
-    const res = await fetch(API_URL);
+    const token = getCookie('token');
+    if (!token) {
+        window.location.href = '/login';
+    }
+    const res = await fetch(API_URL, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     const books = await res.json();
     data = books.data;
     totalPages = Math.ceil(data.length / DATA_PER_PAGE);
@@ -115,3 +124,15 @@ function RenderPagination() {
 }
 
 ///////////////////////////////////////// Event Listeners /////////////////////////////////////////
+
+///////////////////////////////////////// Function /////////////////////////////////////////
+function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+        if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res
+}

@@ -24,6 +24,7 @@ $routes->get('/api/package/(:num)', 'PackageController::show/$1');
 $routes->post('/api/package', 'PackageController::create');
 
 $routes->post('/api/bookAnalytics', 'BookController::getBookAnalytics');
+$routes->post('/api/highestBooked', 'BookController::getHighestBooked');
 
 $routes->get('/admin/bookChart', 'Home::adminBookChart');
 $routes->get('/admin/listPackage', 'Home::listPackage');
