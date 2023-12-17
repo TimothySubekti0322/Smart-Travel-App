@@ -17,6 +17,11 @@ class Home extends BaseController
         return view('success');
     }
 
+    public function bookingHistory(): string
+    {
+        return view('bookingHistory');
+    }
+
     public function adminBookChart()
     {
 

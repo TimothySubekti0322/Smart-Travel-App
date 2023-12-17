@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="font-family: 'Poppins', sans-serif;">
     <header class="absolute w-full bg-white flex justify-between items-center p-8 h-24 shadow-xl">
         <!-- Logo -->
         <div>

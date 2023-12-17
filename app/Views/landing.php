@@ -22,30 +22,31 @@
         <div class="flex items-center gap-x-4">
             <a href="/" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Home</a>
             <a href="#body" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Package</a>
+            <a href="/bookingHistory" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Booking History</a>
         </div>
 
         <!-- Sign Up -->
         <div class="flex items-center">
            <?php
-if(isset($_COOKIE['payload'])) {
-    $payload = json_decode($_COOKIE['payload'], true); // Decode JSON to PHP array
+                if(isset($_COOKIE['payload'])) {
+                    $payload = json_decode($_COOKIE['payload'], true); // Decode JSON to PHP array
 
-    // Check if 'name' key exists in the decoded payload
-    if(isset($payload['name'])) {
-        echo '<p class="text-gray-700 mr-4 font-bold">' . $payload['name'] . '</p>';
-        echo '<p class="text-gray-700 mr-4 font-bold">|</p>'; // Added separator
-        echo '<a href="/logout" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">sign out</a>';
-    } else {
-        echo '<a href="/login" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Login</a>';
-        echo '<p class="text-gray-700 mr-4 font-bold">|</p>'; // Added separator
-        echo '<a href="/register" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Sign up</a>';
-    }
-} else {
-    echo '<a href="/login" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Login</a>';
-    echo '<p class="text-gray-700 mr-4 font-bold">|</p>'; // Added separator
-    echo '<a href="/register" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Sign up</a>';
-}
-?>
+                    // Check if 'name' key exists in the decoded payload
+                    if(isset($payload['name'])) {
+                        echo '<p class="text-gray-700 mr-4 font-bold">' . $payload['name'] . '</p>';
+                        echo '<p class="text-gray-700 mr-4 font-bold">|</p>'; // Added separator
+                        echo '<a href="/logout" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">sign out</a>';
+                    } else {
+                        echo '<a href="/login" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Login</a>';
+                        echo '<p class="text-gray-700 mr-4 font-bold">|</p>'; // Added separator
+                        echo '<a href="/register" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Sign up</a>';
+                    }
+                } else {
+                    echo '<a href="/login" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Login</a>';
+                    echo '<p class="text-gray-700 mr-4 font-bold">|</p>'; // Added separator
+                    echo '<a href="/register" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Sign up</a>';
+                }
+            ?>
 
         </div>
     </header>

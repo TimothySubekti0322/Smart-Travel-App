@@ -55,7 +55,9 @@ function RenderTable() {
     tableBody.innerHTML = '';
     const start = (currentPage - 1) * DATA_PER_PAGE;
     const end = currentPage * DATA_PER_PAGE;
+    console.log(start, end);
     const books = data.slice(start, end);
+    console.log(books);
     books.forEach(book => {
         const tr = document.createElement('tr');
         tr.classList.add('border-b-4', 'border-[#B2A59B]');

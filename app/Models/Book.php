@@ -52,4 +52,13 @@ class Book extends Model
         }
         return $data;
     }
+
+    public function orderHistory($id) {
+        $builder = $this->table('books');
+        $builder->select('books.id, books.total, books.date, books.time, books.seat, books.ticket, packages.destination, packages.departure');
+        $builder->join('packages', 'packages.id = books.packageId');
+        $builder->where('userId', $id);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
 }

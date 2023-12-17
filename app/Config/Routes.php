@@ -19,6 +19,9 @@ $routes->get('/api/book', 'BookController::getAllBooks');
 $routes->post('/api/book', 'BookController::create');
 $routes->post('/api/checkSeat', 'BookController::checkSeat');
 
+$routes->get('/bookingHistory', 'Home::bookingHistory');
+$routes->get('/api/bookingHistory/(:num)', 'BookController::getBookingHistory/$1');
+
 $routes->get('/api/package', 'PackageController::index');
 $routes->get('/api/package/(:num)', 'PackageController::show/$1');
 $routes->post('/api/package', 'PackageController::create');

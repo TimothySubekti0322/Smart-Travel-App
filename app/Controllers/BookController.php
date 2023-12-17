@@ -293,4 +293,53 @@ class BookController extends BaseController
         ]);
     }
 
+    public function getBookingHistory($id) {
+        try {
+            $authHeader = $this->request->getHeaderLine('Authorization');
+            if(!$authHeader) {
+                return $this->respond([
+                    'status' => 401,
+                    'message' => 'No Authorization header found',
+                    'data' => []
+                ]);
+            }
+            $headerValue = explode(' ', $authHeader); // Bearer <token>
+            
+            if(count($headerValue)==1) {
+                return $this->respond([
+                    'status' => 401,
+                    'message' => 'No token provided in the authorization header',
+                    'data' => []
+                ]);
+            }
+
+            $jwt = $headerValue[1]; // Get the token
+
+            $key = "d2ff7174120474a55903c47ec1b44ccb672ef3d889ea24be72650eba1ae40d57";
+            
+            $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+
+            if($decoded->data->id !== $id) {
+                return $this->respond([
+                    'status' => 401,
+                    'message' => 'Unauthorized',
+                    'data' => []
+                ]);
+            }
+
+            $model = new Book();
+            $data = $model->orderHistory($id);
+            // $data = $model->where('userId', $id)->findAll();
+            return $this->respond([
+                'status' => 200,
+                'data' => $data
+            ]);
+        } catch (\Exception $e) {
+            return $this->respond([
+                'status' => 500,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
 }
