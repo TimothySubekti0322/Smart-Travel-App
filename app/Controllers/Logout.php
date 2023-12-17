@@ -8,7 +8,7 @@ class Logout extends BaseController
 {
     public function index()
     {
-        setcookie('token', time() - 3600);
+        setcookie('token', "");
         setcookie('payload', time() - 3600);
         return redirect()->to('/login');
     }

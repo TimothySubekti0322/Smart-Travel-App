@@ -11,13 +11,13 @@
 </head>
 <body>
     <div class="bg-[url('/images/loginBG.jpg')] bg-cover w-screen h-screen flex flex-col justify-center items-center">
-        <div class="w-full h-full bg-black opacity-40 absolute"></div>
+        <div class="w-screen h-screen bg-black opacity-40 absolute"></div>
         <form class="z-[1] flex flex-col justify-center items-center w-full" action="/register" method="POST" enctype="multipart/form-data">
             <div class="text-white text-[3.5rem] opacity-100 ">Register</div>
-            <input type="text" class="rounded-[4rem] bg-black opacity-70 text-white mt-12 w-2/5 px-6 py-6 text-xl" name="email" placeholder="email"/>
-            <input type="text" class="rounded-[4rem] bg-black opacity-70 text-white mt-12 w-2/5 px-6 py-6 text-xl" name="username" placeholder="username"/>
-            <input type="password" class="rounded-[4rem] bg-black opacity-70 text-white mt-12 w-2/5 px-6 py-6 text-xl" name="password" placeholder="password"/>
-            <button type="submit" class="rounded-[4rem] bg-[#D8E4F2] hover:bg-[#B6C2D0] text-xl text-black mt-12 w-2/5 px-4 py-6">Register</button>
+            <input type="text" class="rounded-[4rem] bg-black opacity-70 text-white mt-12 w-2/5 xl:px-4 xl:py-4 2xl:px-6 2xl:py-6 xl:text-base 2xl:text-xl" name="email" placeholder="email"/>
+            <input type="text" class="rounded-[4rem] bg-black opacity-70 text-white mt-12 w-2/5 xl:px-4 xl:py-4 2xl:px-6 2xl:py-6 xl:text-base 2xl:text-xl" name="username" placeholder="username"/>
+            <input type="password" class="rounded-[4rem] bg-black opacity-70 text-white mt-12 w-2/5 xl:px-4 xl:py-4 2xl:px-6 2xl:py-6 xl:text-base 2xl:text-xl" name="password" placeholder="password"/>
+            <button type="submit" class="rounded-[4rem] bg-[#D8E4F2] hover:bg-[#B6C2D0] xl:text-base 2xl:text-xl text-black mt-12 w-2/5 xl:px-2 xl:py-3 2xl:px-4 2xl:py-6 font-bold">Register</button>
         </form>
         <p class="mt-12 text-white z-[1]">already have account ? <a href="/login" class="text-[#3559E0] hover:underline">login</a> here</p>
     </div>

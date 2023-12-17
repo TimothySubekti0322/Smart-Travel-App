@@ -67,14 +67,17 @@
                             <div class="flex flex-col gap-y-2">
                                 <label for="name" class="text-[#687176]">Full Name</label>
                                 <input type="text" name="name" id="name" class="border border-[#EAEAEA] rounded-xl p-4" />
+                                <i id="nameError" class="text-[#BE3144] hidden">Please Input Your Name</i>
                             </div>
                             <div class="flex flex-col gap-y-2">
                                 <label for="email" class="text-[#687176]">Email</label>
-                                <input type="email" name="email" id="email" class="border border-[#EAEAEA] rounded-xl p-4" />
+                                <input type="text" name="email" id="email" class="border border-[#EAEAEA] rounded-xl p-4" />
+                                <i id="emailError" class="text-[#BE3144] hidden">Please Input Your Email</i>
                             </div>
                             <div class="flex flex-col gap-y-2">
                                 <label for="telephone" class="text-[#687176]">Phone Number</label>
                                 <input type="text" name="telephone" id="telephone" class="border border-[#EAEAEA] rounded-xl p-4" />
+                                <i id="telephoneError" class="text-[#BE3144] hidden">Please Input Your Phone Number</i>
                             </div>
                             <div class="flex flex-col gap-y-2">
                                 <label for="date" class="text-[#687176]">Date</label>

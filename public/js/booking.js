@@ -5,8 +5,11 @@ const time = document.getElementById('time');
 const timeError = document.getElementById('timeError');
 const chooseSeatButton = document.getElementById('chooseSeatButton');
 const nameInput = document.getElementById('name');
+const nameError = document.getElementById('nameError');
 const emailInput = document.getElementById('email');
+const emailError = document.getElementById('emailError');
 const telephoneInput = document.getElementById('telephone');
+const telephoneError = document.getElementById('telephoneError');
 
 var nameValue = "";
 var emailValue = "";
@@ -290,46 +293,52 @@ submitButton.addEventListener('click', (e) => {
     const name = nameInput.value;
     const email = emailInput.value;
     const telephone = telephoneInput.value;
-    const date = dateValue;
-    const time = timeValue;
-    const packageId = id;
-    const seat = seatSelected.join(',');
-    const ticket = seatSelected.length;
-    const total = totalPrice;
+    console.log(name, email, telephone);
 
-    const payload = JSON.parse(getCookie('payload'));
-    const userId = payload.id;
+    // Check Name, Email, Telephone
+    if (nameValid() && emailValid() && telephoneValid()) {
+        console.log("Masuk");
+        const date = dateValue;
+        const time = timeValue;
+        const packageId = id;
+        const seat = seatSelected.join(',');
+        const ticket = seatSelected.length;
+        const total = totalPrice;
+
+        const payload = JSON.parse(getCookie('payload'));
+        const userId = payload.id;
 
 
-    const data = {
-        userId,
-        name,
-        email,
-        telephone,
-        date,
-        time,
-        packageId,
-        seat,
-        ticket,
-        total
+        const data = {
+            userId,
+            name,
+            email,
+            telephone,
+            date,
+            time,
+            packageId,
+            seat,
+            ticket,
+            total
+        }
+
+        fetch(`/api/book`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        }).then(response => {
+            console.log(response.status);
+            if (response.status == 200) {
+                resetVariable();
+                window.location.href = "/success"
+            }
+            else {
+                alert("Booking Failed");
+            }
+        })
     }
-
-    fetch(`/api/book`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    }).then(response => {
-        console.log(response.status);
-        if (response.status == 200) {
-            resetVariable();
-            window.location.href = "/success"
-        }
-        else {
-            alert("Booking Failed");
-        }
-    })
 });
 
 
@@ -430,4 +439,51 @@ function resetVariable() {
     seatSelected = [];
     totalPrice = 0;
     price = 0;
+}
+
+// Check Name Input
+
+function nameValid() {
+    if (!(nameInput.value)) {
+        nameInput.classList.add('outline');
+        nameInput.classList.add('outline-[#BE3144]');
+        nameError.classList.remove('hidden');
+        return false;
+    }
+    else {
+        nameInput.classList.remove('outline');
+        nameInput.classList.remove('outline-[#BE3144]');
+        nameError.classList.add('hidden');
+        return true;
+    }
+}
+
+function emailValid() {
+    if (!(emailInput.value)) {
+        emailInput.classList.add('outline');
+        emailInput.classList.add('outline-[#BE3144]');
+        emailError.classList.remove('hidden');
+        return false;
+    }
+    else {
+        emailInput.classList.remove('outline');
+        emailInput.classList.remove('outline-[#BE3144]');
+        emailError.classList.add('hidden');
+        return true;
+    }
+}
+
+function telephoneValid() {
+    if (!(telephoneInput.value)) {
+        telephoneInput.classList.add('outline');
+        telephoneInput.classList.add('outline-[#BE3144]');
+        telephoneError.classList.remove('hidden');
+        return false;
+    }
+    else {
+        telephoneInput.classList.remove('outline');
+        telephoneInput.classList.remove('outline-[#BE3144]');
+        telephoneError.classList.add('hidden');
+        return true;
+    }
 }

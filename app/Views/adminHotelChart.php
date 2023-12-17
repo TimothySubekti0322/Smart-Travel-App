@@ -1,24 +1,14 @@
-<?php
-
-if (!isset($_COOKIE['payload'])) {
-    header("Location: localhost:8080/login");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Book Chart</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Admin Hotel Chart</title>
+        <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <header class="absolute w-full bg-white flex justify-between items-center p-8 h-24 shadow-xl">
         <!-- Logo -->
@@ -29,7 +19,7 @@ if (!isset($_COOKIE['payload'])) {
         <!-- Menu -->
         <div class="flex items-center gap-x-4">
             <a href="/admin/bookChart" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Booking Data</a>
-            <a href="/admin/listPackage" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">List Package</a>
+            <a href="/admin/listPackage" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Add Package</a>
             <a href="/admin/hotelChart" class="text-gray-700 mr-4 font-bold hover:text-[#00B6FF]">Hotel Order Data</a>
         </div>
 
@@ -60,64 +50,28 @@ if (!isset($_COOKIE['payload'])) {
 
     <!-- Fill Header -->
     <div class="h-24 w-full"></div>
-
-    <div class="w-full flex flex-col justify-center items-center">
-        <p class="text-2xl font-bold mb-8 mt-24">Booking Chart Analytics</p>
+    
+     <div class="w-full flex flex-col justify-center items-center">
+        <div id="Caution" class="w-screen h-screen flex justify-center items-center"><p class="font-bold text-2xl text-center">Make Sure that the Hotel Server is turned on <br/>to Load this data</p></div>
         <div class="w-3/5">
             <canvas id="myChart"></canvas>
         </div>
-        <p class="text-2xl font-bold mb-4 mt-24">Booking Order Table</p>
-
-        <div class="w-4/5 my-10 mt-8">
-            <table id="bookTable" class="w-full table-auto">
-                <!-- Table header -->
-                <thead>
-                    <tr>
-                        <th class="bg-[#607274] text-white px-4 py-2">Id</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">UserId</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">name</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">email</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">telephone</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">date</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">time</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">packageId</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">seat</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">ticket</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">total</th>
-                    </tr>
-                </thead>
-                <!-- Table body to be filled by JavaScript -->
-                <tbody id="tableBody">
-                    <tr class="border-b-4 border-[#B2A59B]">
-
-                    </tr>
-                </tbody>
-            </table>
-
-            <div id="pagination" class="flex justify-center items-center mt-8 gap-x-4">
-
-            </div>
-        </div>
-
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         const ctx = document.getElementById('myChart');
 
-        const response = fetch('/api/bookAnalytics', {
-                method: 'POST',
+        const response = fetch('http://localhost:8081/reportAPI/satya@gmail.com/satya', {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    'email': 'admin@gmail.com',
-                    'password': 'admin'
-                })
+                }
             }).then(response => response.json())
             .then(data => {
                 console.log(data);
+                const Caution = document.getElementById('Caution');
+                Caution.remove();
                 const myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -149,7 +103,5 @@ if (!isset($_COOKIE['payload'])) {
                 });
             });
     </script>
-    <script src="/js/adminBookTable.js" charset="utf-8"></script>
 </body>
-
 </html>

@@ -7,15 +7,35 @@ use App\Models\Book;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\User;
 use App\Models\Package;
-use PhpParser\Node\Expr\Empty_;
-
-use function PHPUnit\Framework\isEmpty;
+use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use App\Controllers\Authorization;
 
 class BookController extends BaseController
 {
     use ResponseTrait;
     public function index()
     {
+        try {
+            helper('cookie');
+            $jwt = get_cookie('token');
+
+            // If no token found, redirect to login page
+            if(!$jwt) {
+                return redirect()->to('/login');
+            }
+
+            $key = "d2ff7174120474a55903c47ec1b44ccb672ef3d889ea24be72650eba1ae40d57";
+            
+            $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+
+        } catch (\Exception $e) {
+
+            // If token is invalid, redirect to login page
+            return redirect()->to('/login');
+        }
+
+        
         return view('book');
     }
 
@@ -146,6 +166,35 @@ class BookController extends BaseController
 
     public function getAllBooks() {
         try {
+            $authHeader = $this->request->getHeaderLine('Authorization');
+            if(!$authHeader) {
+                return $this->respond([
+                    'status' => 401,
+                    'message' => 'No Authorization header found'
+                ]);
+            }
+            $headerValue = explode(' ', $authHeader); // Bearer <token>
+            
+            if(count($headerValue)==1) {
+                return $this->respond([
+                    'status' => 401,
+                    'message' => 'No token provided in the authorization header'
+                ]);
+            }
+
+            $jwt = $headerValue[1]; // Get the token
+
+            $key = "d2ff7174120474a55903c47ec1b44ccb672ef3d889ea24be72650eba1ae40d57";
+            
+            $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+
+            if($decoded->data->role !== 'admin') {
+                return $this->respond([
+                    'status' => 401,
+                    'message' => 'Unauthorized'
+                ]);
+            }
+
             $model = new Book();
             $data = $model->findAll();
 
@@ -162,6 +211,17 @@ class BookController extends BaseController
     }
 
     public function getBookAnalytics() {
+
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+
+        if($email !== 'admin@gmail.com' || $password !== 'admin') {
+            return $this->respond([
+                'status' => 401,
+                'message' => 'Unauthorized'
+            ]);
+        }
+        
         $package = new Package();
         $data = $package->getAllDestination();
 
@@ -185,8 +245,6 @@ class BookController extends BaseController
 
         return $this->respond([
             'status' => 200,
-            // 'label' => $data,
-            // 'data' => $bookData,
             'label' => $newData,
             'data' => $newBookData
         ]);

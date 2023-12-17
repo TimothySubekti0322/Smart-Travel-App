@@ -23,6 +23,10 @@ $routes->get('/api/package', 'PackageController::index');
 $routes->get('/api/package/(:num)', 'PackageController::show/$1');
 $routes->post('/api/package', 'PackageController::create');
 
-$routes->get('/api/bookAnalytics', 'BookController::getBookAnalytics');
+$routes->post('/api/bookAnalytics', 'BookController::getBookAnalytics');
 
 $routes->get('/admin/bookChart', 'Home::adminBookChart');
+$routes->get('/admin/listPackage', 'Home::listPackage');
+$routes->get('/admin/hotelChart', 'Home::adminHotelChart');
+
+$routes->get('/403', 'Home::forbidden');

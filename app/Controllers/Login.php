@@ -70,6 +70,11 @@ class Login extends BaseController
         setcookie('token', $token, $exp, '/');
         setcookie('payload', json_encode($payload['data']), $exp, '/');
 
-        return redirect()->route('/');
+        if ($user['role'] == 'admin') {
+            return redirect()->to('/admin/bookChart');
+        }
+        else {
+            return redirect()->route('/');
+        }
     }
 }
