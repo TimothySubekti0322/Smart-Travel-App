@@ -63,14 +63,11 @@ function RenderTable() {
         tr.classList.add('border-b-4', 'border-[#B2A59B]');
         tr.innerHTML = `
             <td class="px-4 py-2 text-center">${book.id}</td>
-            <td class="px-4 py-2 text-center">${book.userId}</td>
-            <td class="px-4 py-2 text-center">${book.name}</td>
             <td class="px-4 py-2 text-center">${book.email}</td>
-            <td class="px-4 py-2 text-center">${book.telephone}</td>
             <td class="px-4 py-2 text-center">${book.date}</td>
             <td class="px-4 py-2 text-center">${book.time}</td>
-            <td class="px-4 py-2 text-center">${book.packageId}</td>
-            <td class="px-4 py-2 text-center">${book.seat}</td>
+            <td class="px-4 py-2 text-center">${book.departure}</td>
+            <td class="px-4 py-2 text-center">${book.destination}</td>
             <td class="px-4 py-2 text-center">${book.ticket}</td>
             <td class="px-4 py-2 text-center">${book.total}</td>
         `;
@@ -88,7 +85,7 @@ function RenderPagination() {
     // Chevron Right
     if (!(listPagination.includes(1))) {
         const button = document.createElement('button');
-        button.classList.add('p-2', 'bg-[#324B4E]', 'rounded-xl', 'w-10', 'text-white', 'hover:bg-[#657E7F]');
+        button.classList.add('p-2', 'bg-[#324B4E]', 'rounded-xl', 'w-10', 'text-white', 'hover:bg-[#AD8BAB]');
         button.innerHTML = `<img src="/images/Chevron-Left.png" >`;
         button.addEventListener('click', () => {
             listPagination = listPagination.map(item => item - 1);
@@ -101,8 +98,14 @@ function RenderPagination() {
     console.log(listPagination);
     listPagination.forEach(item => {
         const button = document.createElement('button');
-        button.classList.add('p-2', 'bg-[#324B4E]', 'rounded-xl', 'w-10', 'text-white', 'hover:bg-[#657E7F]');
+        button.classList.add('p-2', 'rounded-xl', 'w-10', 'text-white', 'hover:bg-[#AD8BAB]');
         button.innerText = item;
+        if (item === currentPage) {
+            button.classList.add('bg-[#AD8BAB]');
+        }
+        else {
+            button.classList.add('bg-[#324B4E]');
+        }
         button.addEventListener('click', () => {
             currentPage = item;
             RenderTable();
@@ -114,7 +117,7 @@ function RenderPagination() {
     // Chevron right
     if (!(listPagination.includes(totalPages))) {
         const button = document.createElement('button');
-        button.classList.add('p-2', 'bg-[#324B4E]', 'rounded-xl', 'w-10', 'text-white', 'hover:bg-[#657E7F]');
+        button.classList.add('p-2', 'bg-[#324B4E]', 'rounded-xl', 'w-10', 'text-white', 'hover:bg-[#AD8BAB]');
         button.innerHTML = `<img src="/images/Chevron-Right.png" >`;
         button.addEventListener('click', () => {
             listPagination = listPagination.map(item => item + 1);

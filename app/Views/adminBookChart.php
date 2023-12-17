@@ -63,25 +63,22 @@ if (!isset($_COOKIE['payload'])) {
 
     <div class="w-full flex flex-col justify-center items-center">
         <p class="text-2xl font-bold mb-8 mt-24">Booking Chart Analytics</p>
-        <div class="w-3/5">
+        <div class="w-4/5">
             <canvas id="myChart"></canvas>
         </div>
         <p class="text-2xl font-bold mb-4 mt-24">Booking Order Table</p>
 
-        <div class="w-4/5 my-10 mt-8">
+        <div class="w-4/5 my-10 mt-8 overflow-x-auto">
             <table id="bookTable" class="w-full table-auto">
                 <!-- Table header -->
                 <thead>
                     <tr>
                         <th class="bg-[#607274] text-white px-4 py-2">Id</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">UserId</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">name</th>
                         <th class="bg-[#607274] text-white px-4 py-2">email</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">telephone</th>
                         <th class="bg-[#607274] text-white px-4 py-2">date</th>
                         <th class="bg-[#607274] text-white px-4 py-2">time</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">packageId</th>
-                        <th class="bg-[#607274] text-white px-4 py-2">seat</th>
+                        <th class="bg-[#607274] text-white px-4 py-2">Departure</th>
+                        <th class="bg-[#607274] text-white px-4 py-2">Destination</th>
                         <th class="bg-[#607274] text-white px-4 py-2">ticket</th>
                         <th class="bg-[#607274] text-white px-4 py-2">total</th>
                     </tr>

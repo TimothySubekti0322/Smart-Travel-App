@@ -196,7 +196,7 @@ class BookController extends BaseController
             }
 
             $model = new Book();
-            $data = $model->findAll();
+            $data = $model->getBookTable();
 
             return $this->respond([
                 'status' => 200,

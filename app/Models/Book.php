@@ -61,4 +61,12 @@ class Book extends Model
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
+    public function getBookTable() {
+        $builder = $this->table('books');
+        $builder->select('books.id, books.email, books.date, books.time, packages.destination, packages.departure, books.ticket, books.total');
+        $builder->join('packages', 'packages.id = books.packageId');
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
 }

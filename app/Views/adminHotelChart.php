@@ -47,13 +47,11 @@
             ?>
         </div>
     </header>
-
-    <!-- Fill Header -->
-    <div class="h-24 w-full"></div>
     
-     <div class="w-full flex flex-col justify-center items-center">
+     <div class="w-full min-h-screen flex flex-col justify-center items-center">
+        <p class="text-2xl font-bold mb-8 mt-48">Booking Chart Analytics</p>
         <div id="Caution" class="w-screen h-screen flex justify-center items-center"><p class="font-bold text-2xl text-center">Make Sure that the Hotel Server is turned on <br/>to Load this data</p></div>
-        <div class="w-3/5">
+        <div class="w-3/5 mb-8">
             <canvas id="myChart"></canvas>
         </div>
     </div>
