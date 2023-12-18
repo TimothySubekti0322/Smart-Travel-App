@@ -25,6 +25,17 @@ class PackageController extends BaseController
 
     public function create() {
         try {
+
+            // Check Role
+            helper('cookie');
+            $cookie = get_cookie('payload');
+            $cookie = $cookie ? json_decode($cookie) : null;
+            $role = $cookie ? $cookie->role : null;
+
+            if ($role != 'admin') {
+                return redirect()->to('/403');
+            }
+
             $package = new Package();
             
             $rules = [
@@ -38,7 +49,7 @@ class PackageController extends BaseController
             if (!$this->validate($rules)) {
                 return $this->respond([
                     'status' => 400,
-                    'error' => $this->validator->getErrors(),
+                    'message' => $this->validator->getErrors(),
                 ]);
             }
 
@@ -51,15 +62,16 @@ class PackageController extends BaseController
             ];
 
             $package->insert($data);
-            return $this->respond([
-                'status' => 201,
-                'message' => 'Package created successfully',
-            ]);
+            // return $this->respond([
+            //     'status' => 201,
+            //     'message' => 'Package created successfully',
+            // ]);
+            return redirect()->to('/admin/listPackage');
         }
         catch (\Exception $e) {
             return $this->respond([
                 'status' => 500,
-                'error' => $e->getMessage(),
+                'message' => $e->getMessage(),
             ]);
         }
 

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Package</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 </head>
+
 <body style="font-family: 'Poppins', sans-serif;">
-        <header class="absolute w-full bg-white flex justify-between items-center p-8 h-24 shadow-xl">
+    <header class="absolute w-full bg-white flex justify-between items-center p-8 h-24 shadow-xl">
         <!-- Logo -->
         <div>
             <a href="/"><img src="/images/logo.png" alt="logo" class="h-8" /></a>
@@ -52,40 +54,53 @@
     <div class="h-24 w-full"></div>
 
     <!-- Recomendation -->
-    
+    <section id="recomendationSection" class="w-full flex justify-center items-center hidden">
+        <div class="w-4/5 mt-12 rounded-xl border-4 bg-[#FFC47E] p-4">
+            <div class="flex flex-row items-center gap-x-2">
+                <div class="w-6">
+                    <img src="/images/Info.png" alt="info" class="w-full" />
+                </div>
+                <p class="text-xl">Recomendation</p>
+            </div>
+            <div class="py-6 border-t-4 mt-4">
+                <p>PT Smart Hotel in <b id="highestCity"></b> is Highly Visited with Total <b id="highestBook"></b></p>
+            </div>
+        </div>
+    </section>
+
     <!-- Form -->
     <form id="form" class="w-full flex flex-col justify-center items-center hidden" method="POST" action="/api/package" enctype="multipart/form-data">
         <div class="w-1/2 rounded-xl flex flex-col mt-8 border-2 border-black p-10 mt-12">
-                <p class="text-2xl font-bold text-center w-full">Add Package</p>
-                <div class="w-full flex flex-col mt-8">
-                    <label for="name" class="text-gray-700 font-bold mb-2">Name</label>
-                    <input type="text" id="name" name="name" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Executive" />
-                </div>
+            <p class="text-2xl font-bold text-center w-full">Add Package</p>
+            <div class="w-full flex flex-col mt-8">
+                <label for="name" class="text-gray-700 font-bold mb-2">Name</label>
+                <input type="text" id="name" name="name" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Executive" />
+            </div>
 
-                <div class="w-full flex flex-col mt-8">
-                    <label for="description" class="text-gray-700 font-bold mb-2">Description</label>
-                    <input type="text" id="description" name="description" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Toyota hi-ace-8" />
-                </div>
+            <div class="w-full flex flex-col mt-8">
+                <label for="description" class="text-gray-700 font-bold mb-2">Description</label>
+                <input type="text" id="description" name="description" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Toyota hi-ace-8" />
+            </div>
 
-                <div class="w-full flex flex-col mt-8">
-                    <label for="price" class="text-gray-700 font-bold mb-2">Price</label>
-                    <input type="number" id="price" min="1" name="price" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Price" />
-                    <i class="mt-2">Price in rupiah</i>
-                </div>
+            <div class="w-full flex flex-col mt-8">
+                <label for="price" class="text-gray-700 font-bold mb-2">Price</label>
+                <input type="number" id="price" min="1" name="price" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Price" />
+                <i class="mt-2">Price in rupiah</i>
+            </div>
 
-                <div class="w-full flex flex-col mt-8">
-                    <label for="departure" class="text-gray-700 font-bold mb-2">Departure</label>
-                    <input type="text" id="departure" name="departure" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Solo" />
-                </div>
+            <div class="w-full flex flex-col mt-8">
+                <label for="departure" class="text-gray-700 font-bold mb-2">Departure</label>
+                <input type="text" id="departure" name="departure" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Solo" />
+            </div>
 
-                <div class="w-full flex flex-col mt-8">
-                    <label for="destination" class="text-gray-700 font-bold mb-2">Destination</label>
-                    <input type="text" id="destination" name="destination" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Solo" />
-                </div>
+            <div class="w-full flex flex-col mt-8">
+                <label for="destination" class="text-gray-700 font-bold mb-2">Destination</label>
+                <input type="text" id="destination" name="destination" class="w-full border-2 border-[#B2A59B] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#B2A59B] focus:border-transparent" placeholder="Ex: Solo" />
+            </div>
 
-                <button type="submit" class="mt-8 px-6 py-3 mx-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-800 hover:to-blue-800 text-white font-bold rounded-xl">
-                    Add Package
-                </button>
+            <button type="submit" class="mt-8 px-6 py-3 mx-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-800 hover:to-blue-800 text-white font-bold rounded-xl">
+                Add Package
+            </button>
         </div>
     </form>
 
@@ -125,5 +140,7 @@
     </div>
 
     <script src="/js/adminListPackage.js"></script>
+    <script src="/js/recomendation.js"></script>
 </body>
+
 </html>

@@ -103,18 +103,15 @@ if (!isset($_COOKIE['payload'])) {
     <script>
         const ctx = document.getElementById('myChart');
 
-        const response = fetch('/api/bookAnalytics', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    'email': 'admin@gmail.com',
-                    'password': 'admin'
-                })
+        const response = fetch('https://smart-travel-app.000webhostapp.com/api/bookAnalytics', {
+                method: 'post',
+                // body: JSON.stringify({
+                //     'email': 'admin@gmail.com',
+                //     'password': 'admin'
+                // })
             }).then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 const myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
