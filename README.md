@@ -66,7 +66,7 @@ Pertama-tama, Anda perlu mengkloning proyek ini atau **mengunduh file**
 Pindah ke direktori proyek
 
 ```bash
-  cd Path/to/Smart-Dormitory-Backend-Service
+  cd Path/to/Smart-Travel-App
 ```
 
 Kemudian instal semua dependensi dengan menjalankan kode ini pada terminal
@@ -107,16 +107,16 @@ Selanjutnya, ketik command di bawah ini untuk menjalankan server
   php spark serve
 ```
 
-Sekarang anda bisa mengakses layanan backend Smart Dormitory melalui server http://localhost:8080/
+Sekarang anda bisa mengakses Aplikasi Smart Travel melalui server http://localhost:8080/
 
 #### NOTE
-Jika Mengalami Kendala tidak bisa terkonek ke database, maka git Clone project Smart-Dormitory-Backend-Service ke dalam folder htdocs dengan path C:\xampp\htdocs
+Jika Mengalami Kendala tidak bisa terkonek ke database, maka git Clone project Smart-Travel-App ke dalam folder htdocs dengan path C:\xampp\htdocs
 
 Error Yang mungkin terjadi adalah Port Conflict. berikut adalah link referensinya https://www.inforbiro.com/blog/how-to-change-xampp-apache-port
 
 ## Referensi API
 
-Berikut adalah panduan API untuk Layanan Backend Smart Dormitory
+Berikut adalah panduan API untuk Aplikasi Smart Travel
 
 https://drive.google.com/file/d/10Qn4S_46_1tKbfoCjGt5t7gLuZQGJ2Ux/view?usp=sharing
 
