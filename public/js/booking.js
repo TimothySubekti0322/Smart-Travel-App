@@ -15,6 +15,7 @@ var nameValue = "";
 var emailValue = "";
 var telephoneValue = "";
 var dateValue = "";
+var rawDateValue = "";
 var timeValue = "";
 
 var id = "";
@@ -31,7 +32,7 @@ async function renderInitialDetails() {
     id = getPackageIdFromUrl()
     const response = await fetch(`/api/package/${id}`);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     const packageName = document.getElementById('packageName');
     packageName.textContent = '';
@@ -64,7 +65,7 @@ async function renderSeats() {
         body: JSON.stringify({ date: dateValue, time: timeValue, packageId: id })
     });
     const seatFilledData = await seatFilled.json();
-    console.log(seatFilledData);
+    // console.log(seatFilledData);
 
     seatForm.classList.remove('invisible');
     const seatLayout = [
@@ -136,7 +137,7 @@ async function renderSeats() {
             renderTotalPayment();
             renderBookButton();
 
-            console.log(seatSelected);
+            // console.log(seatSelected);
         })
     })
 
@@ -209,33 +210,34 @@ function renderBookButton() {
 // Name Event Listener
 nameInput.addEventListener('change', (e) => {
     const nameValue = e.target.value;
-    console.log(nameValue);
+    // console.log(nameValue);
 })
 
 // Email Event Listener
 emailInput.addEventListener('change', (e) => {
     const emailValue = e.target.value;
-    console.log(emailValue);
+    // console.log(emailValue);
 })
 
 // Telephone Event Listener
 telephoneInput.addEventListener('change', (e) => {
     const telephoneValue = e.target.value;
-    console.log(telephoneValue);
+    // console.log(telephoneValue);
 })
 
 // Date Event Listener
 date.addEventListener('change', (e) => {
     const selectedDate = new Date(e.target.value);
+    rawDateValue = selectedDate;
     dateValue = formatDate(selectedDate);
-    console.log(dateValue);
+    // console.log(dateValue);
 })
 
 // Time Event Listener
 time.addEventListener('change', (e) => {
     const selectedTime = e.target.value;
     timeValue = selectedTime;
-    console.log(selectedTime);
+    // console.log(selectedTime);
 });
 
 // Choose Seat Event Listener
@@ -272,7 +274,7 @@ chooseSeatButton.addEventListener('click', (e) => {
     }
     else {
         // Check Date
-        if (!dateValid(dateValue)) {
+        if (!dateValid(rawDateValue)) {
             date.classList.add('outline');
             date.classList.add('outline-[#BE3144]');
             dateNotValid.classList.remove('hidden');
@@ -293,11 +295,10 @@ submitButton.addEventListener('click', (e) => {
     const name = nameInput.value;
     const email = emailInput.value;
     const telephone = telephoneInput.value;
-    console.log(name, email, telephone);
+    // console.log(name, email, telephone);
 
     // Check Name, Email, Telephone
     if (nameValid() && emailValid() && telephoneValid()) {
-        console.log("Masuk");
         const date = dateValue;
         const time = timeValue;
         const packageId = id;
@@ -329,7 +330,7 @@ submitButton.addEventListener('click', (e) => {
             },
             body: JSON.stringify(data),
         }).then(response => {
-            console.log(response.status);
+            // console.log(response.status);
             if (response.status == 200) {
                 resetVariable();
                 window.location.href = "/success"
@@ -431,6 +432,7 @@ function resetVariable() {
     emailValue = "";
     telephoneValue = "";
     dateValue = "";
+    rawDateValue = "";
     timeValue = "";
 
     id = "";
