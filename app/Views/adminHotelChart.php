@@ -59,12 +59,13 @@
 
     <script>
         const ctx = document.getElementById('myChart');
+        const form = new FormData();
+        form.append('email', 'admin@gmail.com');
+        form.append('password', 'admin');
 
-        const response = fetch('http://localhost:8081/reportAPI/satya@gmail.com/satya', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+        const response = fetch('http://localhost:8081/reportAPI', {
+                method: 'POST',
+                body: form
             }).then(response => response.json())
             .then(data => {
                 console.log(data);
