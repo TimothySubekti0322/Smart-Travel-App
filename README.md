@@ -1,67 +1,140 @@
-# CodeIgniter 4 Application Starter
+# Smart Travel App
 
-## What is CodeIgniter?
+Selamat datang di repositori GitHub untuk Smart Travel App. Project ini merupakan web application sederhana untuk melakukan booking ticket travel. Project ini dibangun dengan maksud melakukan integrasi Aplikasi booking travel dengan aplikasi booking Hotel. 
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+### Aplikasi web ini dibuat oleh Kelompok 23 K01. Berikut adalah anggota kelompok kami :
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+```
+1. I Dewa Made Manu Pradnyana - 18221047
+2. Timothy Subekti - 18221063
+3. Rahman Satya - 18221117
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+```
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
 
-## Installation & updates
+## Fitur
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### Customer
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+- **Login** : Akses yang aman dan terenkripsi untuk setiap Pelanggan, memastikan privasi dan keamanan data.
 
-## Setup
+- **Booking Tiket** : Customer dapat Melakukan Booking tiket pada paket - paket yang tersedia sesuai tanggal, waktu, dan pilihan tempat duduk yang diinginkan
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+- **Melihat Daftar Paket Travel** : Daftar lengkap paket travel yang tersedia dengan informasi rinci untuk membantu Customer membuat pilihan yang tepat.
 
-## Important Change with index.php
+- **Melihat Riwayat Booking tiket** : Akses cepat ke riwayat pembelian memberikan customer informasi lengkap tentang pesanan sebelumnya.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### Pihak Admin
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+- **Melihat Daftar Booking** : Admin dapat memantau dan kelola semua pesanan tiket yang masuk dengan mudah.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+- **Melihat Data paket travel** : Admin dapat melihat seluruh data paket travel 
 
-## Repository Management
+- **Menambahkan paket travel** : Tambahkan dan kelola paket travel dengan mudah, memastikan bahwa daftar selalu terkini dan relevan.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+- **Rekomendasi destinasi paket travel** : Menggunakan informasi area yang ramai dikunjungi dari website booking hotel untuk menentukan destinasi paket travel baru
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+- **Melihat data order hotel**: Admin dapat melihat data booking Hotel melalui API sistem Hotel
+## Tech Stack
 
-## Server Requirements
+**Framework :** CodeIgniter 4
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+**Web Server :** XAMPP
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+**Database :** MySQL
 
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
+**Testing Tools :** Postman
+## Prasyarat
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Sebelum memulai, pastikan Anda telah mendownload beberapa tools berikut ini:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- **XAMPP** : Pastikan Anda telah menginstal XAMPP untuk menyediakan lingkungan pengembangan lokal yang mencakup Apache, MySQL, PHP, dan Perl.
+- **Composer** : Composer digunakan untuk mengelola dependensi PHP pada proyek. Pastikan Anda telah menginstal Composer sebelum melanjutkan dengan instalasi.
+
+Untuk prasyatar ini anda dapat menggunakan referensi video berikut ini [Instalasi CodeIgniter 4](https://youtu.be/UhpzEne6omo?si=RTYhK_HoLrGbvm8f).
+
+## Instalasi
+
+Berikut adalah petunjuk instalasi program untuk menjalankan service pada mesin lokal
+
+Pertama-tama, Anda perlu mengkloning proyek ini atau **mengunduh file**
+
+```bash
+  git clone https://github.com/TimothySubekti0322/Smart-Travel-App
+```
+
+Pindah ke direktori proyek
+
+```bash
+  cd Path/to/Smart-Dormitory-Backend-Service
+```
+
+Kemudian instal semua dependensi dengan menjalankan kode ini pada terminal
+
+```bash
+  composer install
+```
+
+Selanjutnya, nyalakan XAMPP anda, Start Apache dan MySQL. 
+
+![xampp control panel](https://res.cloudinary.com/djkckue0o/image/upload/v1702023164/README%20LSTI/dznhrgrwtsgopfm1g20o.png)
+
+Lalu buka php myadmin melalui url "localhost:XXXX" dengan (XXXX) sebagai Port dari Apache. Dalam contoh gambar saya diatas maka saya akan memasukan url "localhost:8040" ke website. Kemudian setelah muncul welcome page XAMPP, klik menu phpMyAdmin pada top navbarnya. Kemudian buatlah sebuah database bernama **smart_travel**.
+
+![Create database smart_dormitoyr](https://res.cloudinary.com/djkckue0o/image/upload/v1702023678/README%20LSTI/sasw53gtedj80yrkwszp.jpg)
+
+Selanjutnya, Donwload ENV file pada link gdrive berikut dan masukan kedalam root directory Project.
+
+Link ENV File : https://drive.google.com/drive/folders/18yDcRzLhskIMXgjkjQRytNWWvNAVbQIB
+
+Selanjutnya, jalankan command migrasi di bawah ini untuk membuat tabel pada database
+
+```bash
+  php spark migrate
+```
+
+![migration](https://res.cloudinary.com/djkckue0o/image/upload/v1702032125/README%20LSTI/y4xby2hv35jtwrdrxd7c.png)
+
+Kemudian jalan kan command ini pada terminal untuk mengisi initial data pada tabel (seeding)
+```bash
+   php spark db:seed DbSeeder
+```
+![db seed](https://res.cloudinary.com/djkckue0o/image/upload/v1702032125/README%20LSTI/jib5r20etueewlerej1f.png)
+
+Selanjutnya, ketik command di bawah ini untuk menjalankan server
+
+```bash
+  php spark serve
+```
+
+Sekarang anda bisa mengakses layanan backend Smart Dormitory melalui server http://localhost:8080/
+
+#### NOTE
+Jika Mengalami Kendala tidak bisa terkonek ke database, maka git Clone project Smart-Dormitory-Backend-Service ke dalam folder htdocs dengan path C:\xampp\htdocs
+
+Error Yang mungkin terjadi adalah Port Conflict. berikut adalah link referensinya https://www.inforbiro.com/blog/how-to-change-xampp-apache-port
+
+## Referensi API
+
+Berikut adalah panduan API untuk Layanan Backend Smart Dormitory
+
+https://drive.google.com/file/d/10Qn4S_46_1tKbfoCjGt5t7gLuZQGJ2Ux/view?usp=sharing
+
+
+## Test dengan POSTMAN
+
+Berikut adalah panduan untuk melakukan testing API dengan POSTMAN
+
+**LINK POSTMAN COLLECTION :**  https://drive.google.com/drive/folders/1A1phllG9e18wfYhf5OOoy_7OQERQdT0b?usp=drive_link
+
+## Deployment
+
+**Smart Hotel :** https://smart-hotel-sisterin.000webhostapp.com/
+
+**Smart Travel :** https://smart-travel-app.000webhostapp.com/
+
+
+## Appendix
+
+**Dokument Kelompok 23 :** https://drive.google.com/file/d/10Qn4S_46_1tKbfoCjGt5t7gLuZQGJ2Ux/view?usp=sharing
+
